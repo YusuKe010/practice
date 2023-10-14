@@ -12,6 +12,18 @@ public class CharacterMoveAddForce : MonoBehaviour
     RaycastHit hit;
 
     [SerializeField] float _jumpPower = 10;
+
+
+
+    [SerializeField]
+    float groundCheckRadius = 0.4f;
+    [SerializeField]
+    float groundCheckOffsetY = 0.45f;
+    [SerializeField]
+    float groundCheckDistance = 0.2f;
+    [SerializeField]
+    LayerMask groundLayers = 0;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -30,12 +42,10 @@ public class CharacterMoveAddForce : MonoBehaviour
         // 移動の入力がない時は回転させない。入力がある時はその方向にキャラクターを向ける。
         if (dir != Vector3.zero) this.transform.forward = dir;
         _rb.velocity = dir.normalized * _moveSpeed;
-
-
         //地面判定 & ジャンプ
         Ray ray = new Ray(transform.position, Vector3.down * 1.3f);
         Debug.DrawRay(transform.position, Vector3.down * 1.3f);
-        if (Physics.SphereCast(ray, 0.3f, out hit) && Input.GetKeyDown(KeyCode.Space))
+        if ( Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
@@ -46,4 +56,8 @@ public class CharacterMoveAddForce : MonoBehaviour
         _rb.AddForce(_jumpPower * Vector3.up, ForceMode.Impulse);
     }
 
+    bool CheckGroundStatus()
+    {
+        return Physics.SphereCast(transform.position + groundCheckOffsetY * Vector3.down, groundCheckRadius, Vector3.down, out hit, groundCheckDistance, groundLayers, QueryTriggerInteraction.Ignore);
+    }
 }
