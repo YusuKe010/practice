@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     {
         if (Physics.CheckSphere(this.transform.position, 3f, 3))
         {
-            Debug.Log(Physics.CheckSphere(this.transform.position, 3f, 3));
+            Debug.Log(Physics.CheckSphere(this.transform.position, 3f, LayerMask.GetMask("Player")));
             aiState = EnemyAiState.MOVE;
         }
         else
