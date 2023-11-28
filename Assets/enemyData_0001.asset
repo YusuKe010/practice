@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca007d2495a8eef4c87d64d0fa2c5dbb, type: 3}
   m_Name: enemyData_0001
   m_EditorClassIdentifier: 
-  enemyName: "\uFFFDX\uFFFD\uFFFD\uFFFDC\uFFFD\uFFFD"
+  enemyName: "\u30B9\u30E9\u30A4\u30E0"
   maxHp: 4
   atk: 2
   def: 2
