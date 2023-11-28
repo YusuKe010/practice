@@ -16,9 +16,11 @@ public class Enemy : MonoBehaviour
     Rigidbody _rb;
     Transform _enemyTransform;
     [SerializeField] float speed = 3.0f;
-    [SerializeField] float sphereSize = 10f;
+    [SerializeField] float _searchRange = 10f;
+    CharacterMoveAddForce player;
     private void Start()
     {
+        player = FindObjectOfType<CharacterMoveAddForce>();
         _rb = GetComponent<Rigidbody>();
         _enemyTransform = this.transform;
     }
@@ -48,9 +50,9 @@ public class Enemy : MonoBehaviour
 
     void setAi()
     {
-        if (Physics.CheckSphere(this.transform.position, 3f, 3))
+        float dis = Vector3.Distance(this.transform.position, player.transform.position);
+        if (dis <= _searchRange)
         {
-            Debug.Log(Physics.CheckSphere(this.transform.position, 3f, LayerMask.GetMask("Player")));
             aiState = EnemyAiState.MOVE;
         }
         else
@@ -61,8 +63,7 @@ public class Enemy : MonoBehaviour
 
     void Move()
     {
-        CharacterMoveAddForce player = FindObjectOfType<CharacterMoveAddForce>();
-        _rb.velocity = (player.transform.position - transform.position).normalized * speed;
+        _rb.velocity = ( player.transform.position - transform.position).normalized * speed;
     }
 
     void Idle()

@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44621c535465d894d9929124ea3c812b, type: 3}
+  m_Name: CsvImporter
+  m_EditorClassIdentifier: 
+  csvFile: {fileID: 4900000, guid: 454d4008805e9ea4bb74582c4b21457f, type: 3}
